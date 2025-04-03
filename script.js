@@ -86,6 +86,9 @@ function selectStock(symbol) {
         'AAPL': { name: 'Apple Inc.', price: 175.42, change: 2.15, changePercent: 1.24 },
         'MSFT': { name: 'Microsoft Corp.', price: 328.79, change: 3.24, changePercent: 0.99 },
         'AMZN': { name: 'Amazon.com Inc.', price: 178.21, change: -1.35, changePercent: -0.75 },
+        'TSLA': { name: 'Tesla Inc.', price: 421.21, change: -1.81, changePercent: -0.41 },
+        'OXY': { name: 'Occidental Pretrolium Corp.', price: 21.21, change: 0.81, changePercent: 1.51 },
+        'AMD': { name: 'Advanced Micro Devices Inc.', price: 50.98, change: 0.10, changePercent: 2.81 },
         'GOOGL': { name: 'Alphabet Inc.', price: 142.65, change: 0.87, changePercent: 0.61 }
     };
 
