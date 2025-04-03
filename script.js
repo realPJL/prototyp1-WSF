@@ -242,6 +242,9 @@ function sellStock() {
 
 // UI aktualisieren
 function updateUI() {
+    // Ticker aktualisieren
+    updateTicker();
+    
     // Kontostand aktualisieren
     document.querySelector('.balance').textContent = `Kontostand: €${balance.toFixed(2)}`;
 
@@ -288,6 +291,34 @@ document.getElementById('reset-btn').addEventListener('click', function () {
         updateUI();
     }
 });
+
+// Ticker aktualisieren
+function updateTicker() {
+    const stocks = {
+        'AAPL': { price: 175.42, change: 2.15, changePercent: 1.24 },
+        'MSFT': { price: 328.79, change: 3.24, changePercent: 0.99 },
+        'AMZN': { price: 178.21, change: -1.35, changePercent: -0.75 },
+        'GOOGL': { price: 142.65, change: 0.87, changePercent: 0.61 }
+    };
+    
+    const ticker = document.querySelector('.ticker');
+    ticker.innerHTML = '';
+    
+    // Create ticker items
+    const createTickerItems = () => {
+        for (const symbol in stocks) {
+            const stock = stocks[symbol];
+            const tickerItem = document.createElement('div');
+            tickerItem.className = 'ticker-item';
+            tickerItem.innerHTML = `${symbol}: €${stock.price.toFixed(2)} <span class="${stock.change > 0 ? 'up' : 'down'}">${stock.change > 0 ? '+' : ''}${stock.changePercent.toFixed(2)}%</span>`;
+            ticker.appendChild(tickerItem);
+        }
+    };
+    
+    // Add ticker items twice to create continuous effect
+    createTickerItems();
+    createTickerItems();
+}
 
 // Initialisierung
 updateUI();

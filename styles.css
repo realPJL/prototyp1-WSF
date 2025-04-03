@@ -23,6 +23,52 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Ticker styles */
+.ticker-wrap {
+    background-color: #f8f8f8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+    display: flex;
+}
+
+.ticker {
+    display: inline-flex;
+    white-space: nowrap;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: 20s;
+}
+
+.ticker-item {
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.ticker-item .up {
+    color: #4caf50;
+}
+
+.ticker-item .down {
+    color: #f44336;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
