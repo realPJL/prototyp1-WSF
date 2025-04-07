@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Trading Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Trading Simulator</div>
+            <nav class="main-nav">
+                <a href="index.html">HomePage</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="trading-gruppe.html">Trading Gruppe</a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Aktien suchen...">
+                    <button class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <div class="user-info">
+                <div class="balance">Kontostand: €10,000.00</div>
+                <button id="btn">Login</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">AAPL: €175.42 <span class="up">+1.24%</span></div>
+            <div class="ticker-item">MSFT: €328.79 <span class="up">+0.99%</span></div>
+            <div class="ticker-item">AMZN: €178.21 <span class="down">-0.75%</span></div>
+            <div class="ticker-item">GOOGL: €142.65 <span class="up">+0.61%</span></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <main class="portfolio-page">
+            <div class="portfolio-header">
+                <h1>Dein Portfolio</h1>
+                <div class="portfolio-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">Gesamtwert</span>
+                        <span class="stat-value">€12,450.00</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Gewinn/Verlust</span>
+                        <span class="stat-value up">+€2,450.00 (+24.5%)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">vs. MSCI World</span>
+                        <span class="stat-value up">+3.2%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-positions">
+                <h2>Deine Positionen</h2>
+                <div class="positions-table">
+                    <div class="table-header">
+                        <span>Aktie</span>
+                        <span>Anteile</span>
+                        <span>Durchschn. Kaufpreis</span>
+                        <span>Aktueller Preis</span>
+                        <span>Wert</span>
+                        <span>Gewinn/Verlust</span>
+                    </div>
+                    
+                    <div class="position-row">
+                        <div class="stock-info">
+                            <span class="stock-symbol">AAPL</span>
+                            <span class="stock-name">Apple Inc.</span>
+                        </div>
+                        <span class="shares">15</span>
+                        <span class="avg-price">€165.20</span>
+                        <span class="current-price">€175.42</span>
+                        <span class="position-value">€2,631.30</span>
+                        <span class="pnl up">+€153.30 (+6.2%)</span>
+                    </div>
+                    
+                    <div class="position-row">
+                        <div class="stock-info">
+                            <span class="stock-symbol">MSFT</span>
+                            <span class="stock-name">Microsoft Corp.</span>
+                        </div>
+                        <span class="shares">8</span>
+                        <span class="avg-price">€310.50</span>
+                        <span class="current-price">€328.79</span>
+                        <span class="position-value">€2,630.32</span>
+                        <span class="pnl up">+€146.32 (+5.9%)</span>
+                    </div>
+                    
+                    <div class="position-row">
+                        <div class="stock-info">
+                            <span class="stock-symbol">AMZN</span>
+                            <span class="stock-name">Amazon.com Inc.</span>
+                        </div>
+                        <span class="shares">5</span>
+                        <span class="avg-price">€185.75</span>
+                        <span class="current-price">€178.21</span>
+                        <span class="position-value">€891.05</span>
+                        <span class="pnl down">-€37.70 (-4.1%)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-history">
+                <h2>Handelsverlauf</h2>
+                <div class="history-table">
+                    <div class="table-header">
+                        <span>Datum</span>
+                        <span>Typ</span>
+                        <span>Aktie</span>
+                        <span>Menge</span>
+                        <span>Preis</span>
+                        <span>Wert</span>
+                    </div>
+                    
+                    <div class="history-row">
+                        <span class="date">12.05.2023 14:30</span>
+                        <span class="type buy">Kauf</span>
+                        <span class="stock">AAPL</span>
+                        <span class="amount">10</span>
+                        <span class="price">€165.20</span>
+                        <span class="value">€1,652.00</span>
+                    </div>
+                    
+                    <div class="history-row">
+                        <span class="date">10.05.2023 11:15</span>
+                        <span class="type buy">Kauf</span>
+                        <span class="stock">MSFT</span>
+                        <span class="amount">8</span>
+                        <span class="price">€310.50</span>
+                        <span class="value">€2,484.00</span>
+                    </div>
+                    
+                    <div class="history-row">
+                        <span class="date">05.05.2023 09:45</span>
+                        <span class="type buy">Kauf</span>
+                        <span class="stock">AMZN</span>
+                        <span class="amount">5</span>
+                        <span class="price">€185.75</span>
+                        <span class="value">€928.75</span>
+                    </div>
+                    
+                    <div class="history-row">
+                        <span class="date">03.05.2023 15:20</span>
+                        <span class="type buy">Kauf</span>
+                        <span class="stock">AAPL</span>
+                        <span class="amount">5</span>
+                        <span class="price">€162.40</span>
+                        <span class="value">€812.00</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

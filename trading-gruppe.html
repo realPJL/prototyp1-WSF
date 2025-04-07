@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Gruppe | Trading Simulator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Trading Simulator</div>
+            <nav class="main-nav">
+                <a href="index.html">HomePage</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="trading-gruppe.html">Trading Gruppe</a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Aktien suchen...">
+                    <button class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <div class="user-info">
+                <div class="balance">Kontostand: €10,000.00</div>
+                <button id="btn">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="group-main">
+            <div class="group-sidebar">
+                <div class="group-watchlist">
+                    <h2>Aktive Gruppen</h2>
+                    <div class="group-list">
+                        <div class="group-item active" onclick="selectGroup('trading-crew')">
+                            <div>Trading Gruppe</div>
+                            <div class="members-count">5 Mitglieder</div>
+                        </div>
+                        <div class="group-item" onclick="selectGroup('investor-club')">
+                            <div>Investor Club</div>
+                            <div class="members-count">12 Mitglieder</div>
+                        </div>
+                        <div class="group-item" onclick="selectGroup('wallstreet-newbies')">
+                            <div>Wallstreet Newbies</div>
+                            <div class="members-count">8 Mitglieder</div>
+                        </div>
+                    </div>
+                    <button class="new-group-btn" onclick="showCreateGroupModal()">Neue Gruppe erstellen</button>
+                </div>
+                
+                <div class="group-chat">
+                    <h2>Gruppenchat</h2>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-message">
+                            <div class="sender">TraderPro89</div>
+                            <div>Hallo zusammen! Was geht so?</div>
+                            <div class="time">10:23 Uhr</div>
+                        </div>
+                        <div class="chat-message">
+                            <div class="sender">MarketWhiz</div>
+                            <div>Ich beobachte gerade die Tech-Branche. Spannende Bewegungen bei AAPL.</div>
+                            <div class="time">10:25 Uhr</div>
+                        </div>
+                        <div class="chat-message sent">
+                            <div>Ich habe gerade Tesla gekauft. Mal sehen wie es läuft.</div>
+                            <div class="time">10:27 Uhr</div>
+                        </div>
+                        <div class="chat-message">
+                            <div class="sender">InvestorElite</div>
+                            <div>Na dann viel Spaß beim verlieren.</div>
+                            <div class="time">10:29 Uhr</div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Nachricht schreiben..." id="chat-input">
+                        <button onclick="sendGroupMessage()">Senden</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group-content">
+                <div class="group-header">
+                    <h1 id="group-title">Trading Gruppe</h1>
+                    <div class="group-actions">
+                        <button class="invite-btn" onclick="showInviteModal()">Freunde einladen</button>
+                        <button class="settings-btn" onclick="showGroupSettings()">Gruppeneinstellungen</button>
+                    </div>
+                </div>
+                
+                <div class="market-time-container">
+                    <div class="time-left-counter">
+                        <h2>Handelszeit Countdown</h2>
+                        <div class="countdown" id="countdown">
+                            <div class="time-segment">
+                                <span class="time-value" id="hours">09</span>
+                                <span class="time-label">Stunden</span>
+                            </div>
+                            <div class="time-segment">
+                                <span class="time-value" id="minutes">45</span>
+                                <span class="time-label">Minuten</span>
+                            </div>
+                            <div class="time-segment">
+                                <span class="time-value" id="seconds">30</span>
+                                <span class="time-label">Sekunden</span>
+                            </div>
+                        </div>
+                        <div class="trading-hours">
+                            Erweiterte Handelszeiten: 08:00 - 22:00 Uhr (Deutsche Zeit)
+                        </div>
+                    </div>
+                    
+                    <div class="market-info">
+                        <div class="info-card">
+                            <h3>Aktuelle Uhrzeit</h3>
+                            <div class="info-value" id="local-time">15:45:30</div>
+                        </div>
+                        <div class="info-card">
+                            <h3>Nächster Handelstag</h3>
+                            <div class="info-value" id="next-trading-day">Montag, 12. Juni 2023</div>
+                        </div>
+                        <div class="info-card">
+                            <h3>Status</h3>
+                            <div class="info-value market-state" id="market-state">Geöffnet</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-members-container">
+                    <h2>Mitglieder</h2>
+                    <div class="members-list" id="members-list">
+                        <div class="member-card">
+                            <div class="avatar">TP</div>
+                            <div class="info">
+                                <div class="name">TraderPro89</div>
+                            </div>
+                        </div>
+                        <div class="member-card">
+                            <div class="avatar">IE</div>
+                            <div class="info">
+                                <div class="name">InvestorElite</div>
+                            </div>
+                        </div>
+                        <div class="member-card">
+                            <div class="avatar">SM</div>
+                            <div class="info">
+                                <div class="name">StockMaster</div>
+                            </div>
+                        </div>
+                        <div class="member-card">
+                            <div class="avatar">MW</div>
+                            <div class="info">
+                                <div class="name">MarketWhiz</div>
+                            </div>
+                        </div>
+                        <div class="member-card" style="background-color: #e6f2ff;">
+                            <div class="avatar" style="background-color: #2c5aa0;">DU</div>
+                            <div class="info">
+                                <div class="name">Du (You)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="invite-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('invite-modal')">&times;</span>
+            <h2>Freunde einladen</h2>
+            <div class="invite-options">
+                <div class="invite-option">
+                    <h3>Per E-Mail</h3>
+                    <input type="email" placeholder="E-Mail-Adresse" id="invite-email">
+                    <button onclick="sendEmailInvite()">Einladung senden</button>
+                </div>
+                <div class="invite-option">
+                    <h3>Einladungslink</h3>
+                    <div class="invite-link">
+                        <input type="text" id="invite-link" value="https://tradingsimulator.de/gruppe/join/abc123" readonly>
+                        <button onclick="copyInviteLink()">Kopieren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="group-settings-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('group-settings-modal')">&times;</span>
+            <h2>Gruppeneinstellungen</h2>
+            <div class="settings-form">
+                <label for="group-name">Gruppenname</label>
+                <input type="text" id="group-name" value="Trading Crew">
+                
+                <label for="group-privacy">Privatsphäre</label>
+                <select id="group-privacy">
+                    <option value="public">Öffentlich (Jeder kann beitreten)</option>
+                    <option value="private" selected>Privat (Nur auf Einladung)</option>
+                </select>
+                
+                <div class="settings-actions">
+                    <button class="save-btn" onclick="saveGroupSettings()">Speichern</button>
+                    <button class="leave-btn" onclick="leaveGroup()">Gruppe verlassen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="create-group-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('create-group-modal')">&times;</span>
+            <h2>Neue Gruppe erstellen</h2>
+            <div class="create-group-form">
+                <label for="new-group-name">Gruppenname</label>
+                <input type="text" id="new-group-name" placeholder="Meine Trading Gruppe">
+                
+                <label for="new-group-privacy">Privatsphäre</label>
+                <select id="new-group-privacy">
+                    <option value="public">Öffentlich</option>
+                    <option value="private" selected>Privat</option>
+                </select>
+                
+                <button onclick="createNewGroup()">Gruppe erstellen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer für erweiterte Handelszeiten (08:00 - 22:00 Uhr deutsche Zeit)
+        function updateMarketTimer() {
+            // Aktuelle Zeit
+            const now = new Date();
+            const localTimeStr = now.toLocaleTimeString('de-DE', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: false 
+            });
+            document.getElementById('local-time').textContent = localTimeStr;
+            
+            // Handelszeiten (08:00 - 22:00 Uhr deutsche Zeit)
+            const marketOpen = new Date(now);
+            marketOpen.setHours(8, 0, 0, 0);
+            
+            const marketClose = new Date(now);
+            marketClose.setHours(22, 0, 0, 0);
+            
+            // Nächster Handelstag (Montag-Freitag)
+            let nextTradingDay = new Date(now);
+            nextTradingDay.setDate(nextTradingDay.getDate() + 1);
+            
+            // Wochenende überspringen
+            while(nextTradingDay.getDay() === 0 || nextTradingDay.getDay() === 6) {
+                nextTradingDay.setDate(nextTradingDay.getDate() + 1);
+            }
+            
+            // Formatierte Datumsanzeige für nächsten Handelstag
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            document.getElementById('next-trading-day').textContent = 
+                nextTradingDay.toLocaleDateString('de-DE', options);
+            
+            const marketStateElement = document.getElementById('market-state');
+            
+            // Zeit bis Handelsschluss berechnen
+            if (now >= marketOpen && now < marketClose) {
+                // Handel ist geöffnet
+                marketStateElement.textContent = "Geöffnet";
+                marketStateElement.className = "info-value market-state open";
+                
+                const timeLeft = marketClose - now;
+                const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                // Countdown anzeigen
+                document.getElementById('hours').textContent = hoursLeft.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutesLeft.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = secondsLeft.toString().padStart(2, '0');
+            } else if (now < marketOpen) {
+                // Handel öffnet später am selben Tag
+                marketStateElement.textContent = "Geschlossen";
+                marketStateElement.className = "info-value market-state closed";
+                
+                const timeLeft = marketOpen - now;
+                const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                // Countdown anzeigen
+                document.getElementById('hours').textContent = hoursLeft.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutesLeft.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = secondsLeft.toString().padStart(2, '0');
+            } else {
+                // Handel ist geschlossen
+                marketStateElement.textContent = "Geschlossen";
+                marketStateElement.className = "info-value market-state closed";
+                
+                // Zeit bis zur nächsten Öffnung berechnen
+                const nextOpen = new Date(nextTradingDay);
+                nextOpen.setHours(8, 0, 0, 0);
+                
+                const timeLeft = nextOpen - now;
+                const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                // Countdown anzeigen
+                document.getElementById('hours').textContent = hoursLeft.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutesLeft.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = secondsLeft.toString().padStart(2, '0');
+            }
+        }
+        
+        // Timer jede Sekunde aktualisieren
+        updateMarketTimer();
+        setInterval(updateMarketTimer, 1000);
+
+        // Platzhalter-Funktionen für die Modals
+        function showInviteModal() {
+            document.getElementById('invite-modal').style.display = 'block';
+        }
+
+        function showGroupSettings() {
+            document.getElementById('group-settings-modal').style.display = 'block';
+        }
+
+        function showCreateGroupModal() {
+            document.getElementById('create-group-modal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function sendEmailInvite() {
+            alert('Einladung per E-Mail wurde gesendet!');
+            closeModal('invite-modal');
+        }
+
+        function copyInviteLink() {
+            const linkInput = document.getElementById('invite-link');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('Einladungslink wurde kopiert!');
+        }
+
+        function saveGroupSettings() {
+            alert('Gruppeneinstellungen wurden gespeichert!');
+            closeModal('group-settings-modal');
+        }
+
+        function leaveGroup() {
+            if(confirm('Möchten Sie die Gruppe wirklich verlassen?')) {
+                alert('Sie haben die Gruppe verlassen.');
+                closeModal('group-settings-modal');
+            }
+        }
+
+        function createNewGroup() {
+            alert('Neue Gruppe wurde erstellt!');
+            closeModal('create-group-modal');
+        }
+
+        function selectGroup(groupId) {
+            console.log('Gruppe ausgewählt:', groupId);
+            // Hier könnte die Logik zum Wechseln der Gruppe implementiert werden
+        }
+
+        function sendGroupMessage() {
+            const input = document.getElementById('chat-input');
+            if(input.value.trim() !== '') {
+                const messagesDiv = document.getElementById('chat-messages');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'chat-message sent';
+                newMessage.innerHTML = `
+                    <div>${input.value}</div>
+                    <div class="time">${new Date().toLocaleTimeString('de-DE', {hour: '2-digit', minute:'2-digit'})}</div>
+                `;
+                messagesDiv.appendChild(newMessage);
+                input.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>

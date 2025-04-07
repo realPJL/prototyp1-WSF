@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard | Trading Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Trading Simulator</div>
+            <nav class="main-nav">
+                <a href="index.html">HomePage</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="trading-gruppe.html">Trading Gruppe</a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Aktien suchen...">
+                    <button class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <div class="user-info">
+                <div class="balance">Kontostand: €10,000.00</div>
+                <button id="btn">Login</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">AAPL: €175.42 <span class="up">+1.24%</span></div>
+            <div class="ticker-item">MSFT: €328.79 <span class="up">+0.99%</span></div>
+            <div class="ticker-item">AMZN: €178.21 <span class="down">-0.75%</span></div>
+            <div class="ticker-item">GOOGL: €142.65 <span class="up">+0.61%</span></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <main class="leaderboard-page">
+            <h1>Trader Leaderboard</h1>
+            <p class="subtitle">Verglichen mit dem MSCI World Index</p>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <span>Rang</span>
+                    <span>Trader</span>
+                    <span>Performance</span>
+                    <span>Portfoliowert</span>
+                </div>
+                
+                <div class="leaderboard-items">
+                    <!-- Top 3 mit speziellen Stilen -->
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">1</span>
+                        <div class="trader-info">
+                            <span class="trader-name">TraderPro89</span>
+                            <span class="trader-stats">15 Trades | 78% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance up-hp">+12.4%</span>
+                        <span class="portfolio-value">€14,876.50</span>
+                    </div>
+                    
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">2</span>
+                        <div class="trader-info">
+                            <span class="trader-name">InvestorElite</span>
+                            <span class="trader-stats">22 Trades | 68% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance up-hp">+8.7%</span>
+                        <span class="portfolio-value">€13,245.30</span>
+                    </div>
+                    
+                    <div class="leaderboard-item top-3">
+                        <span class="rank">3</span>
+                        <div class="trader-info">
+                            <span class="trader-name">StockMaster</span>
+                            <span class="trader-stats">18 Trades | 72% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance up-hp">+5.2%</span>
+                        <span class="portfolio-value">€12,876.90</span>
+                    </div>
+                    
+                    <!-- Normale Einträge -->
+                    <div class="leaderboard-item">
+                        <span class="rank">4</span>
+                        <div class="trader-info">
+                            <span class="trader-name">MarketWhiz</span>
+                            <span class="trader-stats">10 Trades | 60% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance down-hp">-1.8%</span>
+                        <span class="portfolio-value">€9,876.50</span>
+                    </div>
+                    
+                    <div class="leaderboard-item you">
+                        <span class="rank">5</span>
+                        <div class="trader-info">
+                            <span class="trader-name">Du</span>
+                            <span class="trader-stats">8 Trades | 50% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance down-hp">-3.5%</span>
+                        <span class="portfolio-value">€9,654.30</span>
+                    </div>
+                    
+                    <div class="leaderboard-item">
+                        <span class="rank">6</span>
+                        <div class="trader-info">
+                            <span class="trader-name">TradingNewbie</span>
+                            <span class="trader-stats">5 Trades | 40% Erfolgsrate</span>
+                        </div>
+                        <span class="trader-performance down-hp">-7.5%</span>
+                        <span class="portfolio-value">€8,765.40</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
