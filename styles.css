@@ -229,3 +229,73 @@ button:hover {
     gap: 10px;
     align-items: center;
 }
+
+/* Leaderboard styles */
+.leaderboard {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.leaderboard h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #2a2e39;
+}
+
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-weight: bold;
+    border-bottom: 2px solid #eee;
+    color: #666;
+    font-size: 14px;
+}
+
+.leaderboard-items {
+    margin-top: 5px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.trader-info {
+    display: flex;
+    align-items: center;
+}
+
+.rank {
+    background-color: #2a2e39;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.trader-name {
+    font-weight: bold;
+}
+
+.trader-performance {
+    font-weight: bold;
+}
+
+.trader-performance.up {
+    color: #4caf50;
+}
+
+.trader-performance.down {
+    color: #f44336;
+}

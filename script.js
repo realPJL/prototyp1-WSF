@@ -9,6 +9,8 @@ let currentStock = {
 
 let portfolio = {};
 let balance = 10000;
+let initialBalance = 10000;
+let msciWorldPerformance = 4.2; // MSCI World performance in percent
 
 // Zufällige Preisdaten erstellen
 function generatePriceData(startPrice, days) {
@@ -243,6 +245,49 @@ function sellStock() {
     document.getElementById('trade-amount').value = '';
 }
 
+// Leaderboard aktualisieren
+function updateLeaderboard(userPerformance) {
+    // Leaderboard-Daten (in einer echten App würden diese von einem Server kommen)
+    const leaderboardData = [
+        { name: 'TraderPro89', performance: 12.4 },
+        { name: 'InvestorElite', performance: 8.7 },
+        { name: 'StockMaster', performance: 5.2 },
+        { name: 'MarketWhiz', performance: -1.8 },
+        { name: 'TradingNewbie', performance: -7.5 }
+    ];
+    
+    // User einfügen und sortieren
+    const userEntry = { name: 'You', performance: userPerformance };
+    const allEntries = [...leaderboardData, userEntry];
+    
+    // Nach Performance sortieren (absteigend)
+    allEntries.sort((a, b) => b.performance - a.performance);
+    
+    // Top 5 auswählen
+    const topEntries = allEntries.slice(0, 5);
+    
+    // Leaderboard-HTML aktualisieren
+    const leaderboardItems = document.querySelector('.leaderboard-items');
+    leaderboardItems.innerHTML = '';
+    
+    topEntries.forEach((entry, index) => {
+        const item = document.createElement('div');
+        item.className = 'leaderboard-item';
+        
+        item.innerHTML = `
+            <div class="trader-info">
+                <span class="rank">${index + 1}</span>
+                <span class="trader-name">${entry.name}</span>
+            </div>
+            <div class="trader-performance ${entry.performance >= 0 ? 'up' : 'down'}">
+                ${entry.performance >= 0 ? '+' : ''}${entry.performance.toFixed(1)}%
+            </div>
+        `;
+        
+        leaderboardItems.appendChild(item);
+    });
+}
+
 // UI aktualisieren
 function updateUI() {
     // Ticker aktualisieren
@@ -284,13 +329,25 @@ function updateUI() {
     }
 
     document.getElementById('portfolio-value').innerHTML = `<p>Gesamtwert: €${portfolioValue.toFixed(2)}</p>`;
+    
+    // Berechne Benutzerperformance im Vergleich zum MSCI World
+    const totalValue = balance + portfolioValue;
+    const totalPerformance = ((totalValue - initialBalance) / initialBalance) * 100;
+    const vsIndex = totalPerformance - msciWorldPerformance;
+    
+    // Aktualisiere Leaderboard
+    updateLeaderboard(vsIndex);
 }
 
 // Zurücksetzen
 document.getElementById('reset-btn').addEventListener('click', function () {
     if (confirm('Möchten Sie die Simulation zurücksetzen? Dies wird Ihr Konto auf €10.000 zurücksetzen und Ihr Portfolio löschen.')) {
-        balance = 10000;
+        balance = initialBalance;
         portfolio = {};
+        
+        // Zufällige neue MSCI World Performance generieren (zwischen 3% und 6%)
+        msciWorldPerformance = (Math.random() * 3 + 3).toFixed(1);
+        
         updateUI();
     }
 });
