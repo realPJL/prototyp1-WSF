@@ -10,7 +10,9 @@
 <body>
     <header>
         <div class="container header-content">
-            <div class="logo">SWIFT</div>
+            <div class="logo">
+                <img src="SWIFT_LOGO.png" alt="SWIFT Logo" class="logo-image">
+            </div>
             <nav class="main-nav">
                 <a href="index.html">Home</a>
                 <a href="portfolio.html">Portfolio</a>
@@ -27,7 +29,14 @@
             </nav>
             <div class="user-info">
                 <div class="balance">Kontostand: €10,000.00</div>
-                <button id="btn">Login</button>
+                <div>Max Mustermann</div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">></button>
+                <div class="dropdown-content">
+                  <a href="#">Benutzereinstellungen</a>
+                  <a href="#">Logout</a>
+                </div>
             </div>
         </div>
     </header>
@@ -72,13 +81,12 @@
                     </div>
                 </div>
                 
-                <div class="portfolio">
-                    <h2>Portfolio</h2>
-                    <div id="portfolio-list">
-                        <!-- Portfolio items will be added dynamically -->
-                    </div>
-                    <div class="portfolio-summary" id="portfolio-value">
-                        <p>Gesamtwert: €0.00</p>
+                <div class="tagessieger">
+                    <h2>Tagessieger
+                        <img src="Pokal.jpg" alt="Pokal" style="height: 20px; vertical-align: middle;">
+                    </h2>
+                    <div>
+                        TraderPro89
                     </div>
                 </div>
                 
@@ -149,8 +157,9 @@
                 </div>
                 
                 <div class="order-form">
-                    <input type="number" class="trade-amount" id="trade-amount" placeholder="Anzahl" min="1">
                     <div class="trade-controls">
+                        <input type="number" class="trade-amount" id="trade-amount" placeholder="Anzahl" min="1">
+                        <input type="number" class="trade-amount" id="trade-amount" placeholder="Wert" min="1">
                         <button class="buy" id="buy-btn" onclick="buyStock()">Kaufen</button>
                         <button class="sell" id="sell-btn" onclick="sellStock()">Verkaufen</button>
                     </div>
