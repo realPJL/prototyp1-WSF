@@ -10,6 +10,14 @@ body {
     color: #333;
 }
 
+.logo {
+    color: #ffffff;
+}
+
+.logo1 {
+    color: #ae0000;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
