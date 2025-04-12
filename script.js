@@ -358,14 +358,27 @@ function updateTicker() {
         'AAPL': { price: 175.42, change: 2.15, changePercent: 1.24 },
         'MSFT': { price: 328.79, change: 3.24, changePercent: 0.99 },
         'AMZN': { price: 178.21, change: -1.35, changePercent: -0.75 },
-        'GOOGL': { price: 142.65, change: 0.87, changePercent: 0.61 }
+        'GOOGL': { price: 142.65, change: 0.87, changePercent: 0.61 },
+        'TSLA': { price: 421.21, change: -1.81, changePercent: -0.41 },
+        'OXY': { price: 21.21, change: 0.81, changePercent: 1.51 },
+        'NFLX': { price: 500.00, change: 7.5, changePercent: 1.50 },
+        'FB': { price: 300.00, change: -1.5, changePercent: -0.50 },
+        'NVDA': { price: 600.00, change: 18.0, changePercent: 3.00 },
+        'DIS': { price: 120.00, change: -2.4, changePercent: -2.00 },
+        'V': { price: 250.00, change: 2.0, changePercent: 0.80 },
+        'MA': { price: 350.00, change: 3.85, changePercent: 1.10 },
+        'PYPL': { price: 80.00, change: -1.2, changePercent: -1.50 },
+        'SQ': { price: 200.00, change: 4.4, changePercent: 2.20 },
+        'AMD': { price: 100.00, change: -0.3, changePercent: -0.30 },
+        'INTC': { price: 50.00, change: 0.25, changePercent: 0.50 },
+        'CSCO': { price: 60.00, change: -0.12, changePercent: -0.20 }
     };
     
     const ticker = document.querySelector('.ticker');
     ticker.innerHTML = '';
     
-    // Create ticker items
-    const createTickerItems = () => {
+    // Create ticker items - adding each stock twice to ensure smooth transition
+    for (let i = 0; i < 2; i++) {
         for (const symbol in stocks) {
             const stock = stocks[symbol];
             const tickerItem = document.createElement('div');
@@ -373,11 +386,7 @@ function updateTicker() {
             tickerItem.innerHTML = `${symbol}: €${stock.price.toFixed(2)} <span class="${stock.change > 0 ? 'up' : 'down'}">${stock.change > 0 ? '+' : ''}${stock.changePercent.toFixed(2)}%</span>`;
             ticker.appendChild(tickerItem);
         }
-    };
-    
-    // Add ticker items twice to create continuous effect
-    createTickerItems();
-    createTickerItems();
+    }
 }
 
 // Gruppen-Datenstruktur
@@ -675,3 +684,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Initialisierung
 updateUI();
+
+// Initialize ticker on page load
+updateTicker();

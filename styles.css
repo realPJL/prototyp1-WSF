@@ -39,16 +39,12 @@ header {
     overflow: hidden;
     height: 40px;
     width: 100%;
-    display: flex;
 }
 
 .ticker {
     display: inline-flex;
     white-space: nowrap;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-name: ticker;
-    animation-duration: 20s;
+    animation: ticker 30s linear infinite;
 }
 
 .ticker-item {
